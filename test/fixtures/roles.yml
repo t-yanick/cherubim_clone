@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  superadmin: false
+  admin: false
+  employer: false
+  cherubim_user: one
+
+two:
+  superadmin: false
+  admin: false
+  employer: false
+  cherubim_user: two
