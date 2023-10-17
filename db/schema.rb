@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_160232) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_17_084659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,43 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_160232) do
     t.index ["reset_password_token"], name: "index_cherubim_users_on_reset_password_token", unique: true
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "telephone"
+    t.string "email"
+    t.bigint "good_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_id"], name: "index_customers_on_good_id"
+  end
+
+  create_table "deposits", force: :cascade do |t|
+    t.decimal "amount"
+    t.datetime "date"
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_deposits_on_customer_id"
+  end
+
+  create_table "goods", force: :cascade do |t|
+    t.decimal "weight"
+    t.decimal "price"
+    t.boolean "status_received"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "deposit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_receipts_on_customer_id"
+    t.index ["deposit_id"], name: "index_receipts_on_deposit_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.boolean "superadmin"
     t.boolean "admin"
@@ -36,5 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_160232) do
     t.index ["cherubim_user_id"], name: "index_roles_on_cherubim_user_id"
   end
 
+  add_foreign_key "customers", "goods"
+  add_foreign_key "deposits", "customers"
+  add_foreign_key "receipts", "customers"
+  add_foreign_key "receipts", "deposits"
   add_foreign_key "roles", "cherubim_users"
 end
