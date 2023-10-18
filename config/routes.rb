@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'cherubim_user/login'
-  get 'cherubim_user/signup'
+
   resources :deposits
   resources :customers
   resources :goods
   devise_for :cherubim_users
+  root 'cherubim_users#show'
+  # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "cherubim_user#login"
+  
+  #  end
 end
