@@ -2,3 +2,25 @@
   padding-left: 0rem;
 }
 
+.custom-style {
+  /* Add any custom styles for the column */
+}
+
+.side-item {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+.side-item a.nav-link {
+  color: #333; /* Customize link color */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.2s; /* Add smooth transition effect */
+  padding: 10px;
+
+  /* Customize link hover effect */
+}
+
+.side-item a.nav-link:hover {
+  background-color: #007bff; /* Customize hover color */
+  color: #fff; 
+}
+
