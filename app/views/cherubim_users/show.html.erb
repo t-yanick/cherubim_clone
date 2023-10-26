@@ -1,3 +1,14 @@
-<h1>CherubimUsers#show</h1>
-<p>Find me in app/views/cherubim_users/show.html.erb</p>
-<%= @user %>
+<%= link_to 'Logout', destroy_cherubim_user_session_path, method: :delete %>
+<div class= "cherubimUsers-container">
+    <h1 class="cherubimUser-name">Welcome <%=@user.email%></h1>
+    <div class="details-wrapper"> </div>
+</div>
+
+<div class= "main-nav_links">
+  
+    <%= link_to 'Create New Customer', new_customer_path %>
+
+    <%= link_to 'Create New Good', new_good_path %>
+
+    <%= link_to 'Create New Deposit', new_deposit_path %>
+</div>
