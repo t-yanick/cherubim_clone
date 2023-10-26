@@ -7,17 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-        <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
+          <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-        <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
+          <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-        <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
+          <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
         </li>
         <!-- Add more navbar items as needed -->
       </ul>
-       <%= link_to 'Logout', destroy_cherubim_user_session_path, method: :delete, class: 'btn btn-primary' %>
+    </div>
+    <div class="ml-auto">
+      <%= link_to 'Logout', destroy_cherubim_user_session_path, method: :delete, class: 'btn btn-primary' %>
     </div>
   </div>
 </nav>
