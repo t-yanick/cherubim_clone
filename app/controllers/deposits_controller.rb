@@ -25,8 +25,10 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       if @deposit.save
+        pdf_path = generate_pdf_receipt(@deposit) # Generate PDF receipt
         format.html { redirect_to deposit_url(@deposit), notice: "Deposit was successfully created." }
         format.json { render :show, status: :created, location: @deposit }
+        format.pdf { send_pdf_receipt(pdf_path) } # Send PDF receipt as response
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
@@ -38,8 +40,10 @@ class DepositsController < ApplicationController
   def update
     respond_to do |format|
       if @deposit.update(deposit_params)
+        pdf_path = generate_pdf_receipt(@deposit) # Generate PDF receipt
         format.html { redirect_to deposit_url(@deposit), notice: "Deposit was successfully updated." }
         format.json { render :show, status: :ok, location: @deposit }
+        format.pdf { send_pdf_receipt(pdf_path) } # Send PDF receipt as response
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
@@ -66,5 +70,27 @@ class DepositsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def deposit_params
       params.require(:deposit).permit(:amount, :date, :customer_id)
+    end
+
+    def generate_pdf_receipt(deposit)
+      pdf = Prawn::Document.new
+    
+      pdf.text 'Deposit Receipt', size: 20, style: :bold
+      pdf.move_down 20
+    
+      pdf.text "Amount: #{deposit.amount}"
+      pdf.text "Date: #{deposit.date}"
+      pdf.text "Customer ID: #{deposit.customer_id}"
+    
+      # Customize the PDF content as needed
+    
+      pdf_path = Rails.root.join('public', 'deposit_receipt.pdf')
+      pdf.render_file(pdf_path)
+    
+      pdf_path
+    end
+    
+    def send_pdf_receipt(pdf_path)
+      send_file pdf_path, filename: 'deposit_receipt.pdf', type: 'application/pdf', disposition: 'inline'
     end
 end
