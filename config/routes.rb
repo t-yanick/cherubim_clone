@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get 'cherubim_users/index'
+  get 'cherubim_users/show'
+  get 'cherubim_users/new'
+  devise_for :cherubim_users
+  # resources :devises
+  resources :roles
 
   resources :deposits
   resources :customers
   resources :goods
-  devise_for :cherubim_users
+  # post 'new_user', to: 'users/registrations#create'
   root 'cherubim_users#show'
   # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,45 +1,47 @@
-require "test_helper"
+require 'test_helper'
 
 class DepositsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @deposit = deposits(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get deposits_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_deposit_url
     assert_response :success
   end
 
-  test "should create deposit" do
-    assert_difference("Deposit.count") do
-      post deposits_url, params: { deposit: { amount: @deposit.amount, customer_id: @deposit.customer_id, date: @deposit.date } }
+  test 'should create deposit' do
+    assert_difference('Deposit.count') do
+      post deposits_url,
+           params: { deposit: { amount: @deposit.amount, customer_id: @deposit.customer_id, date: @deposit.date } }
     end
 
     assert_redirected_to deposit_url(Deposit.last)
   end
 
-  test "should show deposit" do
+  test 'should show deposit' do
     get deposit_url(@deposit)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_deposit_url(@deposit)
     assert_response :success
   end
 
-  test "should update deposit" do
-    patch deposit_url(@deposit), params: { deposit: { amount: @deposit.amount, customer_id: @deposit.customer_id, date: @deposit.date } }
+  test 'should update deposit' do
+    patch deposit_url(@deposit),
+          params: { deposit: { amount: @deposit.amount, customer_id: @deposit.customer_id, date: @deposit.date } }
     assert_redirected_to deposit_url(@deposit)
   end
 
-  test "should destroy deposit" do
-    assert_difference("Deposit.count", -1) do
+  test 'should destroy deposit' do
+    assert_difference('Deposit.count', -1) do
       delete deposit_url(@deposit)
     end
 

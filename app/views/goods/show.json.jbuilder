@@ -1,1 +1,1 @@
-json.partial! "goods/good", good: @good
+json.partial! 'goods/good', good: @good

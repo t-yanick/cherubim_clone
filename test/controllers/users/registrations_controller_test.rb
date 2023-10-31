@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DepositTest < ActiveSupport::TestCase
+class Users::RegistrationsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

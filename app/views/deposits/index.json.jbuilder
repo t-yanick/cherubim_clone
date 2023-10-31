@@ -1,1 +1,1 @@
-json.array! @deposits, partial: "deposits/deposit", as: :deposit
+json.array! @deposits, partial: 'deposits/deposit', as: :deposit

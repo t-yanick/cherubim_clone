@@ -1,1 +1,1 @@
-json.array! @goods, partial: "goods/good", as: :good
+json.array! @goods, partial: 'goods/good', as: :good

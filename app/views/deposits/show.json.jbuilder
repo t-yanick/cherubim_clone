@@ -1,1 +1,1 @@
-json.partial! "deposits/deposit", deposit: @deposit
+json.partial! 'deposits/deposit', deposit: @deposit

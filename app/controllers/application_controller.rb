@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
-    include Pundit::Authorization
-    before_action :authenticate_cherubim_user!
-    protected
+  include Pundit::Authorization
+  before_action :authenticate_cherubim_user!
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name,:last_name,:Dob :email,:Nic, :password, :password_confirmation) }
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:first_name, :last_name, :Dob, :email, :Nic, :password, :password_confirmation)
     end
+  end
 end

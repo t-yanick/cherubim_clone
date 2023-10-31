@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_20_203948) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_085055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,12 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_203948) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "Nic"
+    t.date "Dob"
+    t.bigint "roles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "Dob"
-    t.string "Nic"
     t.index ["email"], name: "index_cherubim_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_cherubim_users_on_reset_password_token", unique: true
+    t.index ["roles_id"], name: "index_cherubim_users_on_roles_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -66,18 +70,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_20_203948) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.boolean "superadmin"
-    t.boolean "admin"
-    t.boolean "employer"
-    t.bigint "cherubim_user_id", null: false
+    t.string "name"
+    t.json "permissions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cherubim_user_id"], name: "index_roles_on_cherubim_user_id"
   end
 
   add_foreign_key "customers", "goods"
   add_foreign_key "deposits", "customers"
   add_foreign_key "receipts", "customers"
   add_foreign_key "receipts", "deposits"
-  add_foreign_key "roles", "cherubim_users"
 end

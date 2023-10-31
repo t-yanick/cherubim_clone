@@ -1,3 +1,3 @@
 class Good < ApplicationRecord
-    has_many :customers
+  has_many :customers
 end
