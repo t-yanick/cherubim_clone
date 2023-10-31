@@ -1,2 +1,31 @@
-<h1>CherubimUsers#show</h1>
-<p>Find me in app/views/cherubim_users/show.html.erb</p>
+
+<div class="container pl-0 ml-0">
+  <div class="row pl-0 ml-0">
+    <div class="col-md-2 custom-style">
+        <div class="custom-column">
+            <div class="cherubimUsers-container pl-0 mx-0">
+                <h6 class="cherubimUser-name">Welcome <%=@user.email%></h6>
+                    <div class="side-bar">
+      <ul class="navbar-nav ml-auto">
+              <li class="side-item">
+          <%= link_to 'Settings', new_customer_path, class: 'nav-link' %>
+        </li>
+        <li class="side-item">
+          <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
+        </li>
+        <li class="side-item">
+          <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
+        </li>
+        <li class="side-item">
+          <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    </div>
+            </div>
+      </div>
+    </div>
+    <div class="col-md-10 pl-2">
+      Content for the second column goes here
+    </div>
+  </div>
+</div>

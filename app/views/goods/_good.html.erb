@@ -1,17 +1,24 @@
-<div id="<%= dom_id good %>">
-  <p>
-    <strong>Weight:</strong>
-    <%= good.weight %>
-  </p>
+<div class="container">
+  <div class="row">
+    <div id="<%= dom_id(good) %>" class="col-md-6 card">
+      <div class="card-body">
+        <h5 class="card-title">Good Details</h5>
 
-  <p>
-    <strong>Price:</strong>
-    <%= good.price %>
-  </p>
+        <p class="card-text">
+          <strong>Weight:</strong>
+          <%= good.weight %>
+        </p>
 
-  <p>
-    <strong>Status received:</strong>
-    <%= good.status_received %>
-  </p>
+        <p class="card-text">
+          <strong>Price:</strong>
+          <%= good.price %>
+        </p>
 
+        <p class="card-text">
+          <strong>Status received:</strong>
+          <%= good.status_received %>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
