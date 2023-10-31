@@ -6,4 +6,5 @@ class CherubimUsersController < ApplicationController
   end
 
   def new; end
+  
 end
