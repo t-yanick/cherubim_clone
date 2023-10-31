@@ -38,3 +38,12 @@ Role.find_or_create_by!(name: "employee") do |r|
     r.update_receipts = true
     r.delete_receipts = true
 end
+
+CherubimUser.create!(email: "test@user.com",
+    encrypted_password: "123456",
+    password: "123456",
+    first_name: "che",
+    last_name: "nsoh",
+    Nic: "111",
+    Dob: "Tue, 31 Oct 2023",
+    role_id: 1)

@@ -4,6 +4,7 @@ class RolesController < ApplicationController
   # GET /roles or /roles.json
   def index
     @roles = Role.all
+    authorize @roles
   end
 
   # GET /roles/1 or /roles/1.json
@@ -12,6 +13,7 @@ class RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
+    authorize @roles
   end
 
   # GET /roles/1/edit
@@ -60,6 +62,7 @@ class RolesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_role
     @role = Role.find(params[:id])
+    authorize @roles
   end
 
   # Only allow a list of trusted parameters through.

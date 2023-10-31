@@ -36,7 +36,7 @@ class DeviseCreateCherubimUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :Nic
       t.date :Dob
-      t.references :roles
+      t.references :role
 
       t.timestamps null: false
     end

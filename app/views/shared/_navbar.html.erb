@@ -21,9 +21,12 @@
         <!-- Add more navbar items as needed -->
       </ul>
     </div>
-    <div class="ml-auto">
-      <%= link_to 'Logout', destroy_cherubim_user_session_path, method: :delete, class: 'btn btn-primary' %>
+    <% if current_cherubim_user %>
+      <div class="ml-auto w-25">
+      <%= link_to 'Logout', destroy_cherubim_user_session_path, method: :delete, class: 'btn btn-primary ' %>
     </div>
+    <% end %>
+    
   </div>
 </nav>
 

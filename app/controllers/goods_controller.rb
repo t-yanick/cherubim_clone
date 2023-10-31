@@ -4,6 +4,7 @@ class GoodsController < ApplicationController
   # GET /goods or /goods.json
   def index
     @goods = Good.all
+    authorize @goods
   end
 
   # GET /goods/1 or /goods/1.json
@@ -12,6 +13,7 @@ class GoodsController < ApplicationController
   # GET /goods/new
   def new
     @good = Good.new
+    authorize @goods
   end
 
   # GET /goods/1/edit
@@ -60,6 +62,7 @@ class GoodsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_good
     @good = Good.find(params[:id])
+    authorize @goods
   end
 
   # Only allow a list of trusted parameters through.

@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers or /customers.json
   def index
     @customers = Customer.all
+    authorize @customers
   end
 
   # GET /customers/1 or /customers/1.json
@@ -12,6 +13,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    authorize @customer
   end
 
   # GET /customers/1/edit
@@ -20,7 +22,7 @@ class CustomersController < ApplicationController
   # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    authorize @customer
     respond_to do |format|
       if @customer.save
         format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
@@ -60,6 +62,7 @@ class CustomersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_customer
     @customer = Customer.find(params[:id])
+    authorize @customer
   end
 
   # Only allow a list of trusted parameters through.
