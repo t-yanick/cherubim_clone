@@ -13,7 +13,7 @@ class GoodsController < ApplicationController
   # GET /goods/new
   def new
     @good = Good.new
-    authorize @goods
+    authorize @good
   end
 
   # GET /goods/1/edit
@@ -62,7 +62,7 @@ class GoodsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_good
     @good = Good.find(params[:id])
-    authorize @goods
+    authorize @good
   end
 
   # Only allow a list of trusted parameters through.
