@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :cherubim_users
-  get 'cherubim_users/index'
-  get 'cherubim_users/show'
-  get 'cherubim_users/new'
+  # get 'cherubim_users/index'
+  # get 'cherubim_users/show'
+  # get 'cherubim_users/new'
   # resources :devises
   resources :roles
 

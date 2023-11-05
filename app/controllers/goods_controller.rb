@@ -67,6 +67,6 @@ class GoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def good_params
-    params.require(:good).permit(:weight, :price, :status_received)
+    params.require(:good).permit(:weight, :price, :status_received,:customer_id)
   end
 end

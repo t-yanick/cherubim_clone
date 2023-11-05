@@ -4,8 +4,10 @@ one:
   weight: 9.99
   price: 9.99
   status_received: false
+  customer: one
 
 two:
   weight: 9.99
   price: 9.99
   status_received: false
+  customer: two

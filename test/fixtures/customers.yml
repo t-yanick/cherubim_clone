@@ -5,11 +5,15 @@ one:
   last_name: MyString
   telephone: MyString
   email: MyString
-  good: one
+  address: MyString
+  country: MyString
+  city: MyString
 
 two:
   first_name: MyString
   last_name: MyString
   telephone: MyString
   email: MyString
-  good: two
+  address: MyString
+  country: MyString
+  city: MyString

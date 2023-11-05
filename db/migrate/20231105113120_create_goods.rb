@@ -4,6 +4,7 @@ class CreateGoods < ActiveRecord::Migration[7.0]
       t.decimal :weight
       t.decimal :price
       t.boolean :status_received
+      t.references :customer, null: false, foreign_key: true
 
       t.timestamps
     end
