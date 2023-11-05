@@ -26,6 +26,12 @@ Role.find_or_create_by!(name: "admin") do |r|
     r.create_receipts = true
     r.update_receipts = true
     r.delete_receipts = true
+
+
+    r.create_roles = true
+    r.read_roles = true
+    r.update_roles = true
+    r.delete_roles = true
 end
 Role.find_or_create_by!(name: "employee") do |r|
     r.read_deposits = true

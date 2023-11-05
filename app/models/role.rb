@@ -18,5 +18,10 @@ class Role < ApplicationRecord
   store_attribute :permissions, :read_receipts, :boolean, default: false
   store_attribute :permissions, :update_receipts, :boolean, default: false
   store_attribute :permissions, :delete_receipts, :boolean, default: false
+
+  store_attribute :permissions, :create_roles, :boolean, default: false
+  store_attribute :permissions, :read_roles, :boolean, default: false
+  store_attribute :permissions, :update_roles, :boolean, default: false
+  store_attribute :permissions, :delete_roles, :boolean, default: false
   #   has_many :cherubim_users
 end
