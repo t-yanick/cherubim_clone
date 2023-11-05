@@ -21,7 +21,7 @@
       <%= form.text_field :price, class: "form-control" %>
     </div>
     <div>
-      <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial, prompt: true %>
+      <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial,  {:prompt => 'Please select customer for this deposit'} %>
     </div>
     <div class="form-check">
       <%= form.label :status_received, class: "form-check-label" %>
