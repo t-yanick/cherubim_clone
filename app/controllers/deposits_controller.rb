@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  before_action :set_my_current_user, if: :cherubim_user_signed_in?
+  before_action :set_my_current_user
   before_action :set_deposit, only: %i[show edit update destroy]
 
   # GET /deposits or /deposits.json
@@ -65,10 +65,12 @@ class DepositsController < ApplicationController
     end
   end
 
-  private
   def set_my_current_user
     Current.user = current_cherubim_user
   end
+
+  private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_deposit
     @deposit = Deposit.find(params[:id])
