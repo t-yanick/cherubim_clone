@@ -21,11 +21,14 @@ class DepositsController < ApplicationController
 
   # POST /deposits or /deposits.json
   def create
-    @deposit = Deposit.new(deposit_params)
-    if @deposit.good
-      @deposit.amount = @deposit.good.price
+    @deposit = Deposit.new
+    if deposit_params['good_id'].blank?
+      new_deposit_params = deposit_params.except('good_id')
+      @deposit = Deposit.new(new_deposit_params)
+    else
+      @deposit = Deposit.new(deposit_params)
     end
-   
+
     authorize @deposit
     respond_to do |format|
       if @deposit.save

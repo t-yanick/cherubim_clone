@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   has_many :goods
+  has_many :deposits
   validates :email, presence: true, uniqueness: true
   validates :telephone, presence: true, uniqueness: true
   validates_presence_of :first_name, :last_name, :country, :address, :city

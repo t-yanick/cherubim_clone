@@ -3,7 +3,7 @@ class CreateReceipts < ActiveRecord::Migration[7.0]
     create_table :receipts do |t|
       t.references :deposit, null: false, foreign_key: true
       t.references :customer, null: false, foreign_key: true
-      t.references :good, null: false, foreign_key: true
+      t.references :good, null: true, foreign_key: true
       t.references :cherubim_user, null: false, foreign_key: true
       t.string :good_name
 

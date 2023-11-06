@@ -13,6 +13,10 @@
    <div>
       <%= form.collection_select :good_id, Good.all,:id,:name_with_initial,  {:prompt => 'Please select good for this deposit'},class: "form-control" %>
     </div>
+    <div class="form-group">
+      <%= form.label :amount, style: "display: block" %>
+      <%= form.text_field :amount, class: "form-control" %>
+    </div>
 
     <div class="form-group">
       <%= form.label :date, style: "display: block" %>
