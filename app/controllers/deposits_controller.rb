@@ -27,6 +27,7 @@ class DepositsController < ApplicationController
       @deposit = Deposit.new(new_deposit_params)
     else
       @deposit = Deposit.new(deposit_params)
+      @deposit.amount = Good.find(deposit_params['good_id']).price
     end
 
     authorize @deposit
