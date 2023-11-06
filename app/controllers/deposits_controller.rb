@@ -74,7 +74,7 @@ class DepositsController < ApplicationController
   # Only allow a list of trusted parameters through.
   # Only allow a list of trusted parameters through.
   def deposit_params
-    params.require(:deposit).permit(:amount, :date, :customer_id)
+    params.require(:deposit).permit(:amount, :date, :customer_id, :good_id)
   end
 
   def generate_pdf_receipt(deposit)

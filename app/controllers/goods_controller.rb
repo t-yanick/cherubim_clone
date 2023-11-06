@@ -1,4 +1,5 @@
 class GoodsController < ApplicationController
+  include GoodsHelper
   before_action :set_good, only: %i[show edit update destroy]
 
   # GET /goods or /goods.json
@@ -22,7 +23,7 @@ class GoodsController < ApplicationController
   # POST /goods or /goods.json
   def create
     @good = Good.new(good_params)
-
+    @good.price = @good.weight * unit_price
     respond_to do |format|
       if @good.save
         format.html { redirect_to good_url(@good), notice: 'Good was successfully created.' }
@@ -67,6 +68,6 @@ class GoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def good_params
-    params.require(:good).permit(:weight, :price, :status_received, :customer_id)
+    params.require(:good).permit(:weight, :name, :status_received, :customer_id)
   end
 end

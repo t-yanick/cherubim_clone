@@ -10,10 +10,8 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="form-group">
-      <%= form.label :amount, style: "display: block" %>
-      <%= form.text_field :amount, class: "form-control" %>
+   <div>
+      <%= form.collection_select :good_id, Good.all,:id,:name_with_initial,  {:prompt => 'Please select good for this deposit'},class: "form-control" %>
     </div>
 
     <div class="form-group">
@@ -21,10 +19,10 @@
       <%= form.datetime_field :date, class: "form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= form.label :customer_id, style: "display: block" %>
-      <%= form.text_field :customer_id, class: "form-control" %>
+     <div>
+      <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial,  {:prompt => 'Please select customer for this deposit'},class: "form-control" %>
     </div>
+ 
 
     <div class="form-group d-flex justify-content-center align-items-center">
       <%= form.submit "Save", class: "btn btn-primary" %>
