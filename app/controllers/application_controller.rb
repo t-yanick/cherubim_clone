@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   before_action :authenticate_cherubim_user!
+  before_action :set_my_current_user, if: :cherubim_user_signed_in?
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   respond_to :json, :html
 
   private
+
+  def set_my_current_user
+    Current.user = current_cherubim_user
+  end
 
   def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'

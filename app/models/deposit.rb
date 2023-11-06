@@ -9,14 +9,14 @@ class Deposit < ApplicationRecord
   def generate_receipt
     deposit = Deposit.last.good
     if deposit
-      Receipt.create!(cherubim_user_id: 1,
+      Receipt.create!(cherubim_user_id: Current.user.id,
                       good_id: Deposit.last.good.id,
                       customer_id: Deposit.last.customer.id,
                       deposit_id: Deposit.last.id,
                       good_name: Deposit.last.good.name)
 
     else
-      Receipt.create!(cherubim_user_id: 1,
+      Receipt.create!(cherubim_user_id: Current.user.id,
                       customer_id: Deposit.last.customer.id,
                       deposit_id: Deposit.last.id,
                       good_name: Deposit.last.good.name)
