@@ -22,7 +22,10 @@ class DepositsController < ApplicationController
   # POST /deposits or /deposits.json
   def create
     @deposit = Deposit.new(deposit_params)
-    @deposit.amount = @deposit.good.price
+    if @deposit.good
+      @deposit.amount = @deposit.good.price
+    end
+   
     authorize @deposit
     respond_to do |format|
       if @deposit.save
