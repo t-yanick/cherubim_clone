@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[show edit update destroy]
-
+  include GoodsHelper
   # GET /customers or /customers.json
   def index
     @customers = Customer.all
@@ -13,6 +13,8 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    # @customer = @customer.goods.new
+    @customer.goods.new
     authorize @customer
   end
 
@@ -25,6 +27,9 @@ class CustomersController < ApplicationController
     authorize @customer
     respond_to do |format|
       if @customer.save
+        last_good = Good.last
+        last_good.price = last_good.weight * unit_price
+        last_good.save
         format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
@@ -73,6 +78,7 @@ class CustomersController < ApplicationController
                                      :email,
                                      :address,
                                      :country,
-                                     :city)
+                                     :city,
+                                     goods_attributes: %i[weight status_received name])
   end
 end
