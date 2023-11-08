@@ -17,7 +17,22 @@ class CustomersController < ApplicationController
     @customer.goods.new
     authorize @customer
   end
-
+  def new_customer_only
+    @customer = Customer.new
+    # authorize @customer
+  end
+  def create_only_customer
+    @customer = Customer.new(customer_params)
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
+        format.json { render :show, status: :created, location: @customer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # GET /customers/1/edit
   def edit; end
 
@@ -80,5 +95,14 @@ class CustomersController < ApplicationController
                                      :country,
                                      :city,
                                      goods_attributes: %i[weight status_received name])
+  end
+  def customer_only_params
+    params.require(:customer).permit(:first_name,
+                                     :last_name,
+                                     :telephone,
+                                     :email,
+                                     :address,
+                                     :country,
+                                     :city)
   end
 end

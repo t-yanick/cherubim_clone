@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :deposits
   resources :customers
   resources :goods
+  get '/onlycustomer', to: "customers#new_customer_only"
+  post '/onlycustomer', to: "customers#create_only_customer"
   root 'cherubim_users#show'
   # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
