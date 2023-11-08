@@ -18,14 +18,15 @@
       <%= form.text_field :amount, class: "form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= form.label :date, style: "display: block" %>
-      <%= form.datetime_field :date, class: "form-control" %>
-    </div>
-
      <div>
       <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial,  {:prompt => 'Please select customer for this deposit'},class: "form-control" %>
     </div>
+
+    <div class="form-group">
+    <%= form.label :date, style: "display: block" %>
+    <%= form.datetime_field :date, class: "form-control" %>
+  </div>
+
  
 
     <div class="form-group d-flex justify-content-center align-items-center">
