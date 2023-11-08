@@ -1,14 +1,109 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron">
+    <h2 class="display-4">All Deposits</h2>
+    <p class="lead" style="color: green;"><%= notice %></p>
+  </div>
 
-<h1>Deposits</h1>
+  <div id="deposits">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% total_amount = 0 %>
+        <% daily_total = Hash.new(0) %>
+        <% weekly_total = Hash.new(0) %>
+        <% monthly_total = Hash.new(0) %>
+        <% @deposits.each do |deposit| %>
+          <tr id="<%= dom_id deposit %>">
+            <td><%= deposit.customer_id %></td>
+            <td><%= deposit.date %></td>
+            <td><%= deposit.amount %></td>
+            <td>
+              <%= link_to "Deposit Details", deposit, class: "btn btn-primary details-button" %>
+            </td>
+          </tr>
+          <% total_amount += deposit.amount %>
+          <% daily_total[deposit.date.to_date] += deposit.amount %>
+          <% weekly_total[deposit.date.to_date.beginning_of_week] += deposit.amount %>
+          <% monthly_total[deposit.date.to_date.beginning_of_month] += deposit.amount %>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Total: <%= total_amount %></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div id="deposits">
-  <% @deposits.each do |deposit| %>
-    <%= render deposit %>
-    <p>
-      <%= link_to "Show this deposit", deposit %>
-    </p>
-  <% end %>
+  <div>
+    <h3>Daily Total Amounts:</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% daily_total.each do |date, amount| %>
+          <tr>
+            <td><%= date %></td>
+            <td><%= amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h3>Weekly Total Amounts:</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% weekly_total.each do |week_start, amount| %>
+          <tr>
+            <td><%= week_start.strftime("%Y-%m-%d") %> to <%= week_start.end_of_week.strftime("%Y-%m-%d") %></td>
+            <td><%= amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h3>Monthly Total Amounts:</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% monthly_total.each do |month_start, amount| %>
+          <tr>
+            <td><%= month_start.strftime("%Y-%m-%d") %> to <%= month_start.end_of_month.strftime("%Y-%m-%d") %></td>
+            <td><%= amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center">
+  <%= link_to "New Deposit", new_deposit_path, class: "btn btn-success" %>
 </div>
-
-<%= link_to "New deposit", new_deposit_path %>
+  </div>

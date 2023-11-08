@@ -1,4 +1,4 @@
-<div class="container">
+<div class="custom-container">
   <%= form_with(model: deposit) do |form| %>
     <% if deposit.errors.any? %>
       <div class="error-container">
@@ -10,27 +10,30 @@
         </ul>
       </div>
     <% end %>
-   <div>
-      <%= form.collection_select :good_id, Good.all,:id,:name_with_initial,  {:prompt => 'Please select good for this deposit'},class: "form-control" %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :good_id %>
+          <%= form.collection_select :good_id, Good.all, :id, :name_with_initial, { prompt: 'Please select good for this deposit' }, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :amount %>
+          <%= form.text_field :amount, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :customer_id %>
+          <%= form.collection_select :customer_id, Customer.all, :id, :name_with_initial, { prompt: 'Please select customer for this deposit' }, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :date %>
+          <%= form.datetime_field :date, class: "form-control" %>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :amount, style: "display: block" %>
-      <%= form.text_field :amount, class: "form-control" %>
-    </div>
-
-     <div>
-      <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial,  {:prompt => 'Please select customer for this deposit'},class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-    <%= form.label :date, style: "display: block" %>
-    <%= form.datetime_field :date, class: "form-control" %>
-  </div>
-
- 
-
     <div class="form-group d-flex justify-content-center align-items-center">
-      <%= form.submit "Save", class: "btn btn-primary" %>
+      <%= form.submit "Save", class: "btn btn-primary custom-button" %>
     </div>
   <% end %>
 </div>

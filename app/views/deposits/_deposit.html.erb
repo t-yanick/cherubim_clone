@@ -1,17 +1,7 @@
-<div id="<%= dom_id deposit %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= deposit.amount %>
-  </p>
+<td><%= deposit.customer_id %></td>
+<td><%= deposit.date %></td>
+<td><%= deposit.amount %></td>
 
-  <p>
-    <strong>Date:</strong>
-    <%= deposit.date %>
-  </p>
-
-  <p>
-    <strong>Customer:</strong>
-    <%= deposit.customer_id %>
-  </p>
-
-</div>
+<td>
+  <%= link_to "Deposit Details", deposit, class: "btn btn-primary details-button" %>
+</td>
