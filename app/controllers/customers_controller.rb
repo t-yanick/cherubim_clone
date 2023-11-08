@@ -17,10 +17,12 @@ class CustomersController < ApplicationController
     @customer.goods.new
     authorize @customer
   end
+
   def new_customer_only
     @customer = Customer.new
     # authorize @customer
   end
+
   def create_only_customer
     @customer = Customer.new(customer_params)
     respond_to do |format|
@@ -33,6 +35,7 @@ class CustomersController < ApplicationController
       end
     end
   end
+
   # GET /customers/1/edit
   def edit; end
 
@@ -96,6 +99,7 @@ class CustomersController < ApplicationController
                                      :city,
                                      goods_attributes: %i[weight status_received name])
   end
+
   def customer_only_params
     params.require(:customer).permit(:first_name,
                                      :last_name,
