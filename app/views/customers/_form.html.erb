@@ -2,65 +2,59 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <%= form_with(model: customer) do |form| %>
- 
-
-        <div class="form-group">
-          <%= form.label :first_name %>
-          <%= form.text_field :first_name, class: "form-control" %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="form-group">
-          <%= form.label :last_name %>
-          <%= form.text_field :last_name, class: "form-control" %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :telephone %>
+            <%= form.text_field :telephone, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= form.label :email %>
+            <%= form.text_field :email, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="form-group">
-          <%= form.label :telephone %>
-          <%= form.text_field :telephone, class: "form-control" %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :address %>
+            <%= form.text_field :address, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= form.label :country %>
+            <%= form.text_field :country, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="form-group">
-          <%= form.label :email %>
-          <%= form.text_field :email, class: "form-control" %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :city %>
+            <%= form.text_field :city, class: "form-control" %>
+          </div>
+          <!-- Add more form fields here for the second column -->
         </div>
-
         <div class="form-group">
-          <%= form.label :address %>
-          <%= form.text_field :address, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :country %>
-          <%= form.text_field :country, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :city %>
-          <%= form.text_field :city, class: "form-control" %>
-        </div>
-        <div>
-        <p class="text-center">goods detail</p>
+          <p class="text-center">Goods Detail</p>
         </div>
         <%= form.fields_for :goods do |f|%>
-        <div>
-
-          <%= f.label :name %>
-          <%= f.text_field :name, class: "form-control" %>
-
-        </div>
-
-        <div>
-
-          <%= f.label :weight %>
-          <%= f.number_field :weight, step: :any, class: "form-control" %>
-
-        </div>
-
-        <div class="form-check">
-      <%= f.label :status_received, class: "form-check-label" %>
-      <%= f.check_box :status_received, class: "form-check-input" %>
-    </div>
-        <%end%>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :weight %>
+              <%= f.number_field :weight, step: :any, class: "form-control" %>
+            </div>
+          </div>
+          <!-- Add more form fields for goods if needed -->
+        <% end %>
         <div class="container d-flex justify-content-center align-items-center form-group">
           <%= form.submit "Save", class: "btn btn-primary" %>
         </div>
