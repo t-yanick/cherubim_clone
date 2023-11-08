@@ -5,7 +5,7 @@ class DepositsController < ApplicationController
   # GET /deposits or /deposits.json
   def index
     @deposits = Deposit.all
-    authorize @deposit
+    authorize @deposits
   end
 
   # GET /deposits/1 or /deposits/1.json

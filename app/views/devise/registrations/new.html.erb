@@ -1,61 +1,68 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :first_name, class: "control-label" %><br />
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+          <div class="col-sm-6">
+            <%= f.label :last_name, class: "control-label" %><br />
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last name", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <%= f.label :Nic, "National Identity Card Number", class: "control-label" %><br />
+            <%= f.text_field :Nic, autofocus: true, autocomplete: "National identity card number", class: "form-control" %>
+          </div>
+
+          <div class="col-sm-6">
+            <%= f.label :Dob, "Date of Birth", class: "control-label" %><br />
+            <%= f.date_field :Dob, autofocus: true, autocomplete: "Date of birth", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, class: "control-label" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="form-group row">
+        <div class="col-sm-6">
+          <%= f.label :password, class: "control-label" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="col-sm-6">
+          <%= f.label :password_confirmation, class: "control-label" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :role_id, "Role", class: "control-label" %><br />
+          <%= f.collection_select :role_id, Role.all, :id, :name, { prompt: true }, { class: "form-control" } %>
+        </div>
+
+        <div class="form-actions text-center">
+          <%= f.submit "Sign up", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <div class="text-center">
+        <%= link_to "Log in", new_cherubim_user_session_path %><br />
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :National_identity_card_number %><br />
-    <%= f.text_field :Nic, autofocus: true, autocomplete: "National identity card number" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Date_of_birth %><br />
-    <%= f.date_field :Dob, autofocus: true, autocomplete: "Date of birth" %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div>
-  <%=f.label :role_id, "role"%>
-  </div>
-<div>
-<%= f.collection_select :role_id, Role.all,:id,:name, prompt: true %>
 </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<div>
- <%= link_to "Log in",new_cherubim_user_session_path%><br />
-</div>
-
-
