@@ -20,11 +20,12 @@ class CustomersController < ApplicationController
 
   def new_customer_only
     @customer = Customer.new
-    # authorize @customer
+    authorize @customer, :new?
   end
 
   def create_only_customer
     @customer = Customer.new(customer_params)
+    authorize @customer, :create?
     respond_to do |format|
       if @customer.save
         format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
