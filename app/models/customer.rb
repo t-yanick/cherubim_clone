@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  has_many :goods
+  has_many :goods, dependent: :destroy
   accepts_nested_attributes_for :goods, allow_destroy: true
   has_many :deposits
   validates :email, presence: true, uniqueness: true
