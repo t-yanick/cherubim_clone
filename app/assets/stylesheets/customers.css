@@ -37,3 +37,13 @@
   .btn-primary:hover {
     background-color: #0056b3;
   }
+
+  .custom-card {
+  padding: 20px;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.details-button {
+  width: 200px; /* Adjust the width as desired */
+}

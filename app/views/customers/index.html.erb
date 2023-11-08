@@ -1,14 +1,41 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron">
+    <h2 class="display-4">All Customers</h2>
+    <p class="lead" style="color: green;"><%= notice %></p>
+  </div>
 
-<h1>Customers</h1>
+  <div id="customers">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Telephone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Country</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr id="<%= dom_id customer %>">
+            <td><%= customer.first_name %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.telephone %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.address %></td>
+            <td><%= customer.country %></td>
+            <td>
+              <%= link_to "Customer Details", customer, class: "btn btn-primary details-button" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
-  <% end %>
+  <div class="text-center">
+    <%= link_to "New customer", new_customer_path, class: "btn btn-success" %>
+  </div>
 </div>
-
-<%= link_to "New customer", new_customer_path %>
