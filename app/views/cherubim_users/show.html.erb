@@ -1,31 +1,47 @@
-
-<div class="container pl-0 ml-0">
-  <div class="row pl-0 ml-0">
-    <div class="col-md-2 custom-style">
-        <div class="custom-column">
-            <div class="cherubimUsers-container pl-0 mx-0">
-                <h6 class="cherubimUser-name">Welcome <%=@user.email%></h6>
-                    <div class="side-bar">
-      <ul class="navbar-nav ml-auto">
-              <li class="side-item">
-          <%= link_to 'Settings', new_customer_path, class: 'nav-link' %>
-        </li>
-        <li class="side-item">
-          <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
-        </li>
-        <li class="side-item">
-          <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
-        </li>
-        <li class="side-item">
-          <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
-        </li>
-      </ul>
-    </div>
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 bg-light">
+      <div class="p-3">
+        <div class="text-center">
+          <h5 class="text-secondary">Welcome back,  <%=@user.first_name%></h5>
+        </div>
+        <div class="mt-4">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <%= link_to 'Settings', new_customer_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="col-md-10 pl-2">
-      Content for the second column goes here
+    <div class="col-md-10 bg-light">
+      <div class="p-3">
+        <div class="text-primary mt-3">
+          <h6 class="mb-0">Current Date and Time:</h6>
+        </div>
+        <div id="currentDateTime" class="mt-2 text-secondary"></div>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Get the current date and time
+  var now = new Date();
+
+  // Format the date and time
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+  var formattedDateTime = now.toLocaleDateString('en-US', options);
+
+  // Display the formatted date and time in the element with id "currentDateTime"
+  document.getElementById('currentDateTime').innerHTML = formattedDateTime;
+</script>
