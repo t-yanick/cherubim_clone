@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :goods
   get '/onlycustomer', to: "customers#new_customer_only"
   post '/onlycustomer', to: "customers#create_only_customer"
+  get '/deposit_statistics', to: 'deposits#statistics', as: 'deposit_statistics'
+  get 'deposits/print_weekly_statistics', to: 'deposits#print_weekly_statistics'
   root 'cherubim_users#show'
   # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

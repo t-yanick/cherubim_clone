@@ -1,0 +1,106 @@
+<div class="container">
+  <h2>Daily Deposit Totals</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @daily_total.each do |date, amount| %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Weekly Deposit Totals</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Week Number</th>
+        <th>Total Amount</th>
+        <th><%= link_to 'Print Weekly Statistics (PDF)', deposits_print_weekly_statistics_path(format: :pdf), target: '_blank' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @weekly_total.each do |week_start, amount| %>
+        <% week_end = week_start + 6.days %>
+        <% week_number = week_start.strftime("%U") %> <!-- Week number format: 00-53 -->
+        <tr>
+          <td><%= week_start %></td>
+          <td><%= week_end %></td>
+          <td><%= week_number %></td>
+          <td><%= amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Monthly Deposit Totals</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Month Number</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @monthly_total.each do |month_start, amount| %>
+        <% month_end = month_start.end_of_month %>
+        <% month_number = month_start.strftime("%m") %> <!-- Month number format: 01-12 -->
+        <tr>
+          <td><%= month_start %></td>
+          <td><%= month_end %></td>
+          <td><%= month_number %></td>
+          <td><%= amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Bi-Quartely Deposit Totals</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bi_quarterly_total.each do |date, amount| %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Annual Deposit Totals</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Total Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @annual_total.each do |date, amount| %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Back to All Deposits", deposits_path %>
+</div>

@@ -1,3 +1,5 @@
+require 'prawn'
+
 class DepositsController < ApplicationController
   before_action :set_my_current_user
   before_action :set_deposit, only: %i[show edit update destroy]
@@ -72,6 +74,16 @@ class DepositsController < ApplicationController
     end
   end
 
+  def statistics
+    @deposits = Deposit.all
+    @daily_total = calculate_daily_total
+    @weekly_total = calculate_weekly_total
+    @monthly_total = calculate_monthly_total
+    @bi_quarterly_total = calculate_bi_quarterly_total
+    @annual_total = calculate_annual_total
+  end
+
+
   def set_my_current_user
     Current.user = current_cherubim_user
   end
@@ -110,5 +122,50 @@ class DepositsController < ApplicationController
 
   def send_pdf_receipt(pdf_path)
     send_file pdf_path, filename: 'deposit_receipt.pdf', type: 'application/pdf', disposition: 'inline'
+  end
+
+  def calculate_daily_total
+    daily_total = Hash.new(0)
+    @deposits.each do |deposit|
+      date = deposit.date.to_date
+      daily_total[date] += deposit.amount
+    end
+    daily_total
+  end
+
+  def calculate_weekly_total
+    weekly_total = Hash.new(0)
+    @deposits.each do |deposit|
+      week_start = deposit.date.to_date.beginning_of_week
+      weekly_total[week_start] += deposit.amount
+    end
+    weekly_total
+  end
+
+  def calculate_monthly_total
+    monthly_total = Hash.new(0)
+    @deposits.each do |deposit|
+      month_start = deposit.date.to_date.beginning_of_month
+      monthly_total[month_start] += deposit.amount
+    end
+    monthly_total
+  end
+
+  def calculate_bi_quarterly_total
+    bi_quarterly_total = Hash.new(0)
+    @deposits.each do |deposit|
+      quarter_start = deposit.date.to_date.beginning_of_quarter
+      bi_quarterly_total[quarter_start] += deposit.amount
+    end
+    bi_quarterly_total
+  end
+
+  def calculate_annual_total
+    annual_total = Hash.new(0)
+    @deposits.each do |deposit|
+      year_start = deposit.date.to_date.beginning_of_year
+      annual_total[year_start] += deposit.amount
+    end
+    annual_total
   end
 end

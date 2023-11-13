@@ -63,47 +63,8 @@
     </table>
   </div>
 
-  <div>
-    <h3>Weekly Total Amounts:</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Week</th>
-          <th>Total Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% weekly_total.each do |week_start, amount| %>
-          <tr>
-            <td><%= week_start.strftime("%Y-%m-%d") %> to <%= week_start.end_of_week.strftime("%Y-%m-%d") %></td>
-            <td><%= amount %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div>
-    <h3>Monthly Total Amounts:</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Month</th>
-          <th>Total Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% monthly_total.each do |month_start, amount| %>
-          <tr>
-            <td><%= month_start.strftime("%Y-%m-%d") %> to <%= month_start.end_of_month.strftime("%Y-%m-%d") %></td>
-            <td><%= amount %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
+  <%= link_to "Deposit Statistics", deposit_statistics_path %>
   <div class="text-center">
-  <%= link_to "New Deposit", new_deposit_path, class: "btn btn-success" %>
-</div>
+   <%= link_to "New Deposit", new_deposit_path, class: "btn btn-success" %>
+  </div>
   </div>
