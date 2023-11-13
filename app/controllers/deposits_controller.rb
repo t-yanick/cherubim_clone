@@ -1,5 +1,3 @@
-require 'prawn'
-
 class DepositsController < ApplicationController
   before_action :set_my_current_user
   before_action :set_deposit, only: %i[show edit update destroy]
@@ -8,6 +6,7 @@ class DepositsController < ApplicationController
   def index
     @deposits = Deposit.all
     authorize @deposits
+    #@deposits = Deposit.where(customer_id: params[:search])
   end
 
   # GET /deposits/1 or /deposits/1.json

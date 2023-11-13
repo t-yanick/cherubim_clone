@@ -1,32 +1,34 @@
-<%= form_with(model: role) do |form| %>
-  <% if role.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
+<div class="customer-card text-center bg-light p-3 mb-3">
+  <%= form_with(model: role) do |form| %>
+    <% if role.errors.any? %>
+      <div class="text-danger mb-3">
+        <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
 
-      <ul>
-        <% role.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% role.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name, class: "d-block" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :permissions, class: "d-block" %>
+      <%= form.text_field :permissions, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :cherubim_user_id, class: "d-block" %>
+      <%= form.text_field :cherubim_user_id, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :permissions, style: "display: block" %>
-    <%= form.text_field :permissions %>
-  </div>
-
-  <div>
-    <%= form.label :cherubim_user_id, style: "display: block" %>
-    <%= form.text_field :cherubim_user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

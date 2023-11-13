@@ -1,6 +1,18 @@
 <div class="container">
   <div class="jumbotron">
-    <h2 class="display-4">All Deposits</h2>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="display-4">All Deposits</h2>
+      </div>
+      <div class="col-md-6">
+        <%= form_tag deposits_path, method: :get, class: "input-group" do %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Customer ID" %>
+          <div class="input-group-append">
+            <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <p class="lead" style="color: green;"><%= notice %></p>
   </div>
 
@@ -9,6 +21,8 @@
       <thead>
         <tr>
           <th>Customer ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Date</th>
           <th>Amount</th>
           <th></th>
@@ -22,6 +36,8 @@
         <% @deposits.each do |deposit| %>
           <tr id="<%= dom_id deposit %>">
             <td><%= deposit.customer_id %></td>
+            <td><%= deposit.customer.first_name %></td>
+            <td><%= deposit.customer.last_name %></td>
             <td><%= deposit.date %></td>
             <td><%= deposit.amount %></td>
             <td>
@@ -34,6 +50,8 @@
           <% monthly_total[deposit.date.to_date.beginning_of_month] += deposit.amount %>
         <% end %>
         <tr>
+          <td></td>
+          <td></td>
           <td></td>
           <td></td>
           <td>Total: <%= total_amount %></td>
