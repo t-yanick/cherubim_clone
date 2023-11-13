@@ -1,10 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h2 class="display-4">Deposit Details</h2>
+    <p class="lead" style="color: green;"><%= notice %></p>
+  </div>
 
-<%= render @deposit %>
-
-<div>
-  <%= link_to "Edit this deposit", edit_deposit_path(@deposit) %> |
-  <%= link_to "Back to deposits", deposits_path %>
-
-  <%= button_to "Destroy this deposit", @deposit, method: :delete %>
+  <div class="customer-card">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>Customer ID:</td>
+          <td><%= @deposit.customer_id %></td>
+        </tr>
+        <tr>
+          <td>First Name:</td>
+          <td><%= @deposit.customer.first_name %></td>
+        </tr>
+        <tr>
+        <td>Last Name:</td>
+        <td><%= @deposit.customer.last_name %></td>
+      </tr>
+        <tr>
+          <td>Date:</td>
+          <td><%= @deposit.date %></td>
+        </tr>
+        <tr>
+          <td>Amount:</td>
+          <td><%= @deposit.amount %></td>
+        </tr>
+      </tbody>
+    </table>
+  
+<div class="customer-links">
+  <%= link_to "Edit this deposit", edit_deposit_path(@deposit), class: "btn btn-primary mr-3 mb-3 mb-md-0" %>
+  <%= link_to "Back to deposits", deposits_path, class: "btn btn-secondary mr-3 mb-3 mb-md-0" %>
+  <%= button_to "Delete deposit", @deposit, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger mb-3 mb-md-0" %>
+</div>
+  </div>
 </div>
