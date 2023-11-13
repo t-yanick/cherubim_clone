@@ -79,3 +79,5 @@ gem 'devise', '~> 4.9'
 gem 'pundit', '~> 2.3'
 
 gem 'prawn'
+
+gem 'countries'
