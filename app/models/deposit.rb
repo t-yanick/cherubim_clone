@@ -9,6 +9,7 @@ class Deposit < ApplicationRecord
   def generate_receipt
     deposit = Deposit.last.good
     if deposit
+      deposit.update(status_received: true) 
       Receipt.create!(cherubim_user_id: Current.user.id,
                       good_id: Deposit.last.good.id,
                       customer_id: Deposit.last.customer.id,

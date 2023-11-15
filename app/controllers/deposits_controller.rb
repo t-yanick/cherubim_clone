@@ -6,7 +6,7 @@ class DepositsController < ApplicationController
   def index
     @deposits = Deposit.all
     authorize @deposits
-    #@deposits = Deposit.where(customer_id: params[:search])
+    # @deposits = Deposit.where(customer_id: params[:search])
   end
 
   # GET /deposits/1 or /deposits/1.json
@@ -82,9 +82,11 @@ class DepositsController < ApplicationController
     @annual_total = calculate_annual_total
   end
 
-
   def set_my_current_user
     Current.user = current_cherubim_user
+  end
+  def print_weekly_statistics
+    puts "yes"
   end
 
   private
@@ -124,28 +126,43 @@ class DepositsController < ApplicationController
   end
 
   def calculate_daily_total
+    # deposits = Deposit.where(date: Date.today)
     daily_total = Hash.new(0)
     @deposits.each do |deposit|
       date = deposit.date.to_date
-      daily_total[date] += deposit.amount
+      daily_total[date] += deposit.amount if deposit.amount
     end
     daily_total
   end
 
   def calculate_weekly_total
+    # deposits = Deposit.where('date BETWEEN ? AND ?',Date.today, Date.today-7)
+    # weekly_total = 0
+    #   deposits.each do |deposit|
+    #     if deposit.amount
+    #     weekly_total += deposit.amount
+    #     end
+    # end
     weekly_total = Hash.new(0)
     @deposits.each do |deposit|
       week_start = deposit.date.to_date.beginning_of_week
-      weekly_total[week_start] += deposit.amount
+      weekly_total[week_start] += deposit.amount if deposit.amount
     end
     weekly_total
   end
 
   def calculate_monthly_total
+    # deposits = Deposit.where('date < ?', Date.today.end_of_month)
+    #  monthly_total = 0
+    #   deposits.each do |deposit|
+    #     if deposit.amount
+    #      monthly_total += deposit.amount
+    #     end
+    # end
     monthly_total = Hash.new(0)
     @deposits.each do |deposit|
       month_start = deposit.date.to_date.beginning_of_month
-      monthly_total[month_start] += deposit.amount
+      monthly_total[month_start] += deposit.amount if deposit.amount
     end
     monthly_total
   end
@@ -154,7 +171,7 @@ class DepositsController < ApplicationController
     bi_quarterly_total = Hash.new(0)
     @deposits.each do |deposit|
       quarter_start = deposit.date.to_date.beginning_of_quarter
-      bi_quarterly_total[quarter_start] += deposit.amount
+      bi_quarterly_total[quarter_start] += deposit.amount if deposit.amount
     end
     bi_quarterly_total
   end
@@ -163,7 +180,7 @@ class DepositsController < ApplicationController
     annual_total = Hash.new(0)
     @deposits.each do |deposit|
       year_start = deposit.date.to_date.beginning_of_year
-      annual_total[year_start] += deposit.amount
+      annual_total[year_start] += deposit.amount if deposit.amount
     end
     annual_total
   end
