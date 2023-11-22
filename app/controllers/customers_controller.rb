@@ -38,6 +38,12 @@ class CustomersController < ApplicationController
     end
   end
 
+  def index_c_g
+    @customers = Customer.includes(:goods)
+
+     render partial: 'index_c_g'
+  end
+
   # GET /customers/1/edit
   def edit; end
 
@@ -80,6 +86,38 @@ class CustomersController < ApplicationController
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def generate_pdf
+    customers = Customer.where(created_at: Date.current.beginning_of_week..Date.current.end_of_week)
+    pdf = Prawn::Document.new
+  
+    pdf.text "Weekly Customer and Goods Listing", size: 20, align: :center
+    pdf.move_down 20
+  
+    week_code = customers.first.created_at.strftime("%Y-W%U")
+    pdf.text "Week Code: #{week_code}", size: 14, style: :bold
+    pdf.move_down 10
+  
+    customers.each do |customer|
+      pdf.text "Date: #{customer.created_at.strftime("%Y-%m-%d")}", size: 12
+  
+      pdf.text "Name: #{customer.first_name} #{customer.last_name}", size: 12
+      pdf.text "Telephone: #{customer.telephone}", size: 12
+      pdf.text "Email: #{customer.email}", size: 12
+      pdf.text "Address: #{customer.address}", size: 12
+      pdf.text "Country: #{customer.country}", size: 12
+  
+      pdf.text "Goods:", size: 12, style: :bold
+      customer.goods.each do |good|
+        pdf.text "Good name: #{good.name}", size: 12
+        pdf.text "Weight of good #{good.weight}", size: 12
+      end
+  
+      pdf.move_down 20
+    end
+  
+    send_data pdf.render, filename: "cherubim_listing_#{week_code}.pdf", type: "application/pdf"
   end
 
   private

@@ -36,6 +36,8 @@
   </div>
 
   <div class="text-center">
-    <%= link_to "New customer", new_customer_path, class: "btn btn-success" %>
-  </div>
+    <%= link_to "Listing details", index_c_g_customer_path(@customers), class: "btn btn-success" %>
+  <%= link_to "New customer", new_customer_path, class: "btn btn-success" %>
 </div>
+
+<%= render partial: 'index_c_g', locals: { customers: @customers } %>
