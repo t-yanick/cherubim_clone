@@ -31,8 +31,7 @@ class CustomersController < ApplicationController
         format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
-        puts "begin debug"
-        puts @customer.errors
+        flash[:notice] = @customer.errors.full_messages
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
