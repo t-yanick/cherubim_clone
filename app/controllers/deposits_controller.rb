@@ -6,6 +6,8 @@ class DepositsController < ApplicationController
   def index
     @deposits = Deposit.all
     authorize @deposits
+    puts "testing deposit"
+    puts @deposits
     # @deposits = Deposit.where(customer_id: params[:search])
   end
 

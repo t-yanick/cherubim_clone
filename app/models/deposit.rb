@@ -1,6 +1,7 @@
 class Deposit < ApplicationRecord
   belongs_to :customer
   belongs_to :good, optional: true
+  validates_presence_of :amount
   after_save :generate_receipt
   has_one :receipt
 
