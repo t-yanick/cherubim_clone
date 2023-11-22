@@ -16,8 +16,12 @@
           <td><%= @deposit.customer.first_name %></td>
         </tr>
         <tr>
-        <td>Last Name:</td>
-        <td><%= @deposit.customer.last_name %></td>
+          <td>Last Name:</td>
+          <td><%= @deposit.customer.last_name %></td>
+        </tr>
+        <tr>
+        <td>Country:</td>
+        <td><%= @deposit.customer.country %></td>
       </tr>
         <tr>
           <td>Date:</td>
@@ -27,12 +31,18 @@
           <td>Amount:</td>
           <td><%= @deposit.amount %></td>
         </tr>
-        <tr>
-        <td>Status:</td>
-        <td><%= @deposit.good.status_received %></td>
-      </tr>
+        <% if @deposit.good_id.present? %>
+          <tr>
+            <td>Status:</td>
+            <td><%= @deposit.good.status_received %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
+
+  <div class="customer-links">
+  <%= link_to "Download Receipt", download_receipt_path(@receipt), target: "_blank", class: "btn btn-secondary mr-3 mb-3 mb-md-0" %>
+</div>
   
 <div class="customer-links">
   <%= link_to "Edit this deposit", edit_deposit_path(@deposit), class: "btn btn-primary mr-3 mb-3 mb-md-0" %>

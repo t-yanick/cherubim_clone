@@ -16,6 +16,7 @@ class DepositsController < ApplicationController
      @deposit =  Deposit.find(params[:id])
      # @good = @deposit.good
      @status = @deposit.received? ? 'received' : 'pending'
+     @receipt = @deposit.receipt
   end
 
   # GET /deposits/new

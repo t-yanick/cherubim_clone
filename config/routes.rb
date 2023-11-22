@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/deposit_statistics', to: 'deposits#statistics', as: 'deposit_statistics'
   get 'deposits/print_weekly_statistics', to: 'deposits#print_weekly_statistics'
   root 'cherubim_users#show'
+  resources :receipts do
+    get 'download', on: :member
+  end
   # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
