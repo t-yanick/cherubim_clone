@@ -39,9 +39,16 @@ class CustomersController < ApplicationController
   end
 
   def index_c_g
+    puts "Country Filter: #{params[:country_filter]}"
+
     @customers = Customer.includes(:goods)
 
-     render partial: 'index_c_g'
+    if params[:country_filter].present?
+      @customers = @customers.where(country: params[:country_filter])
+    end
+    respond_to do |format|
+      format.html { render partial: 'index_c_g', locals: { customers: @customers } }
+    end
   end
 
   # GET /customers/1/edit
