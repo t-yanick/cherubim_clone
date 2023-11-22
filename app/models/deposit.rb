@@ -4,6 +4,12 @@ class Deposit < ApplicationRecord
   validates_presence_of :amount
   after_save :generate_receipt
   has_one :receipt
+  enum status: { pending: 0, received: 1, rejected: 2 }
+  
+  def received?
+    status == 'received'
+  end
+
 
   private
 

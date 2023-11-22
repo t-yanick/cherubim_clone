@@ -12,7 +12,11 @@ class DepositsController < ApplicationController
   end
 
   # GET /deposits/1 or /deposits/1.json
-  def show; end
+  def show;
+     @deposit =  Deposit.find(params[:id])
+     # @good = @deposit.good
+     @status = @deposit.received? ? 'received' : 'pending'
+  end
 
   # GET /deposits/new
   def new
@@ -32,6 +36,7 @@ class DepositsController < ApplicationController
       @deposit = Deposit.new(deposit_params)
       @deposit.amount = Good.find(deposit_params['good_id']).price
     end
+    @deposit.status = 'received'
 
     authorize @deposit
     respond_to do |format|
@@ -62,6 +67,7 @@ class DepositsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
       end
+      @deposit.status = 'received'  
     end
   end
 
