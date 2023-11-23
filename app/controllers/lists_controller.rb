@@ -1,15 +1,8 @@
 class ListsController < ApplicationController
   def search
     @country = search_params[:search]
-
-    @weekly_customers = Customer.where(country: @country)
-       puts " test starts"
-       puts " test starts"
-
-       @weekly_customers.each do |c|
-        puts c.first_name
-        puts c.country
-       end
+    country    = ISO3166::Country.find_country_by_any_name(@country)
+    @weekly_customers = Customer.where(country: country.alpha2).order( 'created_at DESC' )
   end
   def index
   end
