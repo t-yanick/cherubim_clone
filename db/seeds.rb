@@ -43,13 +43,21 @@ Role.find_or_create_by!(name: "employee") do |r|
     r.create_receipts = true
     r.update_receipts = true
     r.delete_receipts = true
+
+    r.read_customers = true
+    r.create_customers = true
+    r.update_customers = true
+    r.delete_customers = true
 end
 
-CherubimUser.create!(email: "test@user.com",
+admin = CherubimUser.new(email: "test@user.com",
     encrypted_password: "123456",
     password: "123456",
     first_name: "che",
     last_name: "nsoh",
     Nic: "111",
     Dob: "Tue, 31 Oct 2023",
-    role_id: 1)
+    role_id: 1,
+    country: "Cameroon")
+admin.skip_confirmation!
+admin.save!
