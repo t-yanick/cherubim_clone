@@ -34,7 +34,7 @@
         <% if @deposit.good_id.present? %>
           <tr>
             <td>Status:</td>
-            <td><%= @deposit.good.status_received %></td>
+             <%= deposit(@deposit.good.status_received) %>
           </tr>
         <% end %>
       </tbody>
