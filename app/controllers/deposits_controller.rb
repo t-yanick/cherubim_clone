@@ -6,13 +6,11 @@ class DepositsController < ApplicationController
   def index
     @deposits = Deposit.all
     authorize @deposits
-    puts "testing deposit"
-    puts @deposits
     # @deposits = Deposit.where(customer_id: params[:search])
   end
 
   # GET /deposits/1 or /deposits/1.json
-  def show;
+  def show
      @deposit =  Deposit.find(params[:id])
      # @good = @deposit.good
      @status = @deposit.received? ? 'received' : 'pending'

@@ -40,7 +40,7 @@
             <div class="col-md-6">
             <div class="form-group">
               <%= form.label :country %>
-              <%= form.select :country, options_for_select(ISO3166::Country.all.map { |c| [c.translations['en'], c.alpha2] }), {}, class: "form-control" %>
+              <%= form.select :country, options_for_select(ISO3166::Country.all.map { |c| [c.translations['en'], c.alpha2] }), {prompt:true}, class: "form-control" %>
              </div>
           </div>
           </div>
