@@ -5,7 +5,7 @@ class Deposit < ApplicationRecord
   after_save :generate_receipt
   has_one :receipt
   enum status: { pending: 0, received: 1, rejected: 2 }
-  
+
   def received?
     status == 'received'
   end
@@ -15,7 +15,7 @@ class Deposit < ApplicationRecord
   def generate_receipt
     deposit = Deposit.last.good
     if deposit
-      deposit.update(status_received: true) 
+      deposit.update(status_received: true)
       Receipt.create!(cherubim_user_id: Current.user.id,
                       good_id: Deposit.last.good.id,
                       customer_id: Deposit.last.customer.id,

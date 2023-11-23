@@ -11,10 +11,10 @@ class DepositsController < ApplicationController
 
   # GET /deposits/1 or /deposits/1.json
   def show
-     @deposit =  Deposit.find(params[:id])
-     # @good = @deposit.good
-     @status = @deposit.received? ? 'received' : 'pending'
-     @receipt = @deposit.receipt
+    @deposit = Deposit.find(params[:id])
+    # @good = @deposit.good
+    @status = @deposit.received? ? 'received' : 'pending'
+    @receipt = @deposit.receipt
   end
 
   # GET /deposits/new
@@ -66,7 +66,7 @@ class DepositsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
       end
-      @deposit.status = 'received'  
+      @deposit.status = 'received'
     end
   end
 
@@ -92,8 +92,9 @@ class DepositsController < ApplicationController
   def set_my_current_user
     Current.user = current_cherubim_user
   end
+
   def print_weekly_statistics
-    puts "yes"
+    puts 'yes'
   end
 
   private
