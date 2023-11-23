@@ -5,13 +5,23 @@
         <h2 class="display-4">All Deposits</h2>
       </div>
       <div class="col-md-6">
-        <%= form_tag deposits_path, method: :get, class: "input-group" do %>
+        <%= form_tag(list_path, method: :get, class: "input-group" ) do %>
           <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Customer ID" %>
           <div class="input-group-append">
             <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
           </div>
         <% end %>
       </div>
+
+  <div class="col-md-12">
+        <%= form_tag(list_path, method: :get, class: "input-group" ) do %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search by Country" %>
+          <div class="input-group-append">
+            <%= submit_tag "Search", class: "btn btn-outline-secondary" %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
     <p class="lead" style="color: green;"><%= notice %></p>
   </div>

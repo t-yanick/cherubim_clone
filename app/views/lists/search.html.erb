@@ -1,0 +1,51 @@
+<h5 class="text-center">Weekly customers for <%= @country%> </h5>
+<table class="w-100">
+  <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Telephone</th>
+        <th>Email</th>
+        <th>Good name</th>
+        <th>Good price </th>
+        <th>Status</th>
+  </tr>
+   <% @weekly_customers.each do |customer| %>
+  <tr>
+ 
+        <td><%=customer.first_name%></td>
+        <td><%=customer.last_name%></td>
+        <td><%=customer.telephone%></td>
+        <td><%=customer.email%></td>
+        <% if customer.goods %>
+        <% customer.goods.each do |cus| %>
+            <td><%=cus.name%></td>
+            <td><%=cus.price%></td>
+            <td><%=deposit(cus.status_received)%></td>
+            <% end %>
+            <% else %>
+            <td>none</td>
+            <td>none</td>
+            <td>none</td>
+        <% end %>
+      
+    
+  </tr>
+    <%end%>
+  <tr>
+    <%# <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td> %>
+  </tr>
+</table>
+
+<%# <div>
+<div class="d-flex justify-content-around">
+<div>first name</div>
+<div>last name</div>
+<div>telephone</div>
+<div>email</div>
+<div>good name</div>
+<div>good price </div>
+<div>good status </div>
+</div>
+</div> %>
