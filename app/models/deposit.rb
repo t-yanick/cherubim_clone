@@ -10,7 +10,6 @@ class Deposit < ApplicationRecord
     status == 'received'
   end
 
-
   private
 
   def generate_receipt

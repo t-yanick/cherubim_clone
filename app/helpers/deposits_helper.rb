@@ -6,4 +6,11 @@ module DepositsHelper
             content_tag(:td, "not received")
         end
     end
+    def customers_per_country(user)
+        if user.role.name == 'admin'
+        Customer.all
+        else
+          Customer.where(country: user.country)
+        end
+      end
 end
