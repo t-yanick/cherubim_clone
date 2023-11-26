@@ -23,7 +23,7 @@ class GoodsController < ApplicationController
   # POST /goods or /goods.json
   def create
     @good = Good.new(good_params)
-    @good.price = @good.weight * unit_price
+    @good.price = @good.weight * @good.unit_price
     respond_to do |format|
       if @good.save
         format.html { redirect_to good_url(@good), notice: 'Good was successfully created.' }
@@ -68,6 +68,6 @@ class GoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def good_params
-    params.require(:good).permit(:weight, :name, :status_received, :customer_id)
+    params.require(:good).permit(:weight, :name, :status_received, :customer_id,:unit_price)
   end
 end

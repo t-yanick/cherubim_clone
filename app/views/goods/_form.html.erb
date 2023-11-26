@@ -19,6 +19,11 @@
       <%= form.number_field :weight, step: :any, class: "form-control" %>
     </div>
 
+     <div class="form-group">
+      <%= form.label :unit_price %>
+      <%= form.number_field :unit_price, step: :any, class: "form-control" %>
+    </div>
+
     <div>
       <%= form.collection_select :customer_id, Customer.all,:id,:name_with_initial,  {:prompt => 'Please select customer for this good'},class: "form-control" %>
     </div>

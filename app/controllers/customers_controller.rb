@@ -142,7 +142,7 @@ class CustomersController < ApplicationController
                                      :address,
                                      :country,
                                      :city,
-                                     goods_attributes: %i[weight status_received name])
+                                     goods_attributes: %i[weight status_received name unit_price])
   end
 
   def customer_only_params
