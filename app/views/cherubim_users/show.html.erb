@@ -11,6 +11,9 @@
               <%= link_to 'Settings', roles_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
+            <%= link_to 'New employee', new_registration_path(@resource_name), class: 'nav-link' %>
+          </li>
+            <li class="nav-item">
               <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
@@ -28,6 +31,9 @@
           <li class="nav-item">
           <%= link_to 'Deposit statistics', deposit_statistics_path, class: 'nav-link' %>
         </li>
+        <li class="nav-item">
+        <%= link_to 'All receipts', receipts_path, class: 'nav-link' %>
+      </li>
         <li class="nav-item">
         <%= link_to 'Print weekly listing', generate_pdf_path, class: 'nav-link' %>
       </li>
