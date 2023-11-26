@@ -15,7 +15,6 @@
         <tr>
           <th>Customer ID</th>
           <th>Customer Name</th>
-          <th>Good ID</th>
           <th>Good Name</th>
           <th>Unit Price</th>
           <th>Quantity</th>
@@ -29,7 +28,6 @@
           <tr>
             <td><%= receipt.customer_id %></td>
             <td><%= "#{receipt.customer.first_name} #{receipt.customer.last_name}" %></td>
-            <td><%= receipt.good_id %></td>
             <td><%= receipt.good_name %></td>
             <td><%= receipt.good&.unit_price %></td>
             <td><%= receipt.good&.weight %></td>
