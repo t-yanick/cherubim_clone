@@ -54,11 +54,9 @@
               <%= link_to "Deposit Details", deposit, class: "btn btn-primary details-button" %>
             </td>
           </tr>
-          <% if deposit.amount  %>
           <% total_amount += deposit.amount %>      
           <% weekly_total[deposit.date.to_date.beginning_of_week] += deposit.amount %>
           <% monthly_total[deposit.date.to_date.beginning_of_month] += deposit.amount %>
-          <% end %>
          
  
         <% end %>
