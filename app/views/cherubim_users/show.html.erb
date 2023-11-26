@@ -14,11 +14,23 @@
               <%= link_to 'New Customer', new_customer_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
+            <%= link_to 'All customers', customers_path, class: 'nav-link' %>
+          </li>
+            <li class="nav-item">
               <%= link_to 'New Good', new_good_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'New Deposit', new_deposit_path, class: 'nav-link' %>
             </li>
+            <li class="nav-item">
+            <%= link_to 'All deposits', deposits_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+          <%= link_to 'Deposit statistics', deposit_statistics_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+        <%= link_to 'Print weekly listing', generate_pdf_path, class: 'nav-link' %>
+      </li>
           </ul>
         </div>
       </div>
