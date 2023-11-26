@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   
   #  end
+  get "/404", to: "errors#not_found"
 end
