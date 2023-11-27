@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :receipts do
     get 'download', on: :member
   end
-  # post 'login', to: "cherubim_users#login"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
