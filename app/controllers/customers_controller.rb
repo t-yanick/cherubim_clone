@@ -133,7 +133,6 @@ class CustomersController < ApplicationController
     authorize @customer
   end
 
-  # Only allow a list of trusted parameters through.
   def customer_params
     params.require(:customer).permit(:first_name,
                                      :last_name,
