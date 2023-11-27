@@ -60,4 +60,5 @@ admin = CherubimUser.new(email: "test@user.com",
     role_id: 1,
     country: "Cameroon")
 admin.skip_confirmation!
+
 admin.save!
