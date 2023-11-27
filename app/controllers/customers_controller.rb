@@ -59,7 +59,7 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.save
         last_good = Good.last
-        last_good.price = last_good.weight * unit_price
+        last_good.price = last_good.weight * last_good.unit_price
         last_good.save
         format.html { redirect_to customer_url(@customer), notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
