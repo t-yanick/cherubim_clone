@@ -1,6 +1,6 @@
 databases:
   - name: Cherubim
-    databaseName: Cherubim_production
+    databaseName: CHERUBIM_DATABASE_
     user: Cherubim
 
 services:
