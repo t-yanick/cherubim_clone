@@ -1,0 +1,18 @@
+databases:
+  - name: Cherubim
+    databaseName: Cherubim_production
+    user: Cherubim
+
+services:
+  - type: web
+    name: Cherubim
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysite
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
