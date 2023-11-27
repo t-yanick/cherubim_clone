@@ -1,6 +1,6 @@
 databases:
   - name: Cherubim
-    databaseName: Cherubim_production
+    databaseName: Cherubim
     user: Cherubim
 
 services:
@@ -12,7 +12,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: Cherubim_production
+          name: Cherubim
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
